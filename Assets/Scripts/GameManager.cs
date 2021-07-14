@@ -7,13 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool GameIsPause { get; private set; } = true;
 
-    public enum VisualView
-    {
-        Polygonal,
-        Sprite
-    }
-
-    public VisualView CurrentView { get; private set; }
 
     void Awake()
     {
@@ -22,12 +15,10 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
-        EventsHolder.VisualViewBeenChanged += ToChangeVisualView;
         EventsHolder.GamePauseChangedState += ToChangePauseState;
     }
     void OnDisable()
     {
-        EventsHolder.VisualViewBeenChanged -= ToChangeVisualView;
         EventsHolder.GamePauseChangedState -= ToChangePauseState;
     }
 
@@ -37,13 +28,6 @@ public class GameManager : MonoBehaviour
         GameIsPause = state;
     }
 
-    void ToChangeVisualView()
-    {
-        if (CurrentView == VisualView.Sprite)
-            CurrentView = VisualView.Polygonal;
-        else if (CurrentView == VisualView.Polygonal)
-            CurrentView = VisualView.Sprite;
-    }
 
     public void ToStartGame()
     {

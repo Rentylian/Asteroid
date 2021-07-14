@@ -16,12 +16,12 @@ public class VisualRepresentation : MonoBehaviour
     }
     void OnDisable()
     {
-        EventsHolder.VisualViewBeenChanged -= ChangeVisualView;
+        EventsHolder.VisualViewBeenChanged -= SetCurrentView;
     }
 
     void SetCurrentView()
     {
-        if (GameManager.Instance.CurrentView == GameManager.VisualView.Polygonal)
+        if (VisualRepresentationDataHandler.Instance.CurrentView == VisualRepresentationDataHandler.VisualView.Polygonal)
             ChangeVisualToPolygonalView();
         else
             ChangeVisualView();
